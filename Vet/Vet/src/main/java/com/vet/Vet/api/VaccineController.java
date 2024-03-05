@@ -1,7 +1,6 @@
 package com.vet.Vet.api;
 
 import com.vet.Vet.buisness.abstracts.IVaccineService;
-import com.vet.Vet.core.config.modelMapper.IModelMapperService;
 import com.vet.Vet.core.exception.NotFoundException;
 import com.vet.Vet.core.result.Result;
 import com.vet.Vet.core.result.ResultData;
@@ -10,9 +9,7 @@ import com.vet.Vet.dto.request.vaccine.VaccineSaveRequest;
 import com.vet.Vet.dto.request.vaccine.VaccineUpdateRequest;
 import com.vet.Vet.dto.response.CursorResponse;
 import com.vet.Vet.dto.response.vaccine.VaccineResponse;
-import com.vet.Vet.entities.Vaccine;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +25,7 @@ public class VaccineController {
     public VaccineController(IVaccineService vaccineService) {
         this.vaccineService = vaccineService;
     }
-
+    //Değerlendirme Formu 21
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ResultData<VaccineResponse> save(@Valid @RequestBody VaccineSaveRequest vaccineSaveRequest) {

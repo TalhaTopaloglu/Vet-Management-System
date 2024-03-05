@@ -29,7 +29,7 @@ public class Vaccine {
 
     @Column(name = "vaccine_protection_finish_date")
     private LocalDate protectionFinishDate;
-
+    //Değerlendirme Formu 9
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vaccine_animal_id", referencedColumnName = "animal_id")
     private Animal animal;

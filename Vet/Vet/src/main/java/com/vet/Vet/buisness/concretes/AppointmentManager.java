@@ -44,7 +44,7 @@ public class AppointmentManager implements IAppointmentService {
     public Appointment getOne(int id) {
         return this.appointmentRepo.findById(id).orElseThrow(() -> new NotFoundException(Msg.NOT_FOUND));
     }
-
+    //Değerlendirme Formu 18
     @Override
     public AppointmentResponse save(AppointmentSaveRequest appointmentSaveRequest) {
         Optional<Appointment> checkAppointment = appointmentRepo.findByAppointmentDateAndDoctorId
@@ -64,7 +64,7 @@ public class AppointmentManager implements IAppointmentService {
 
         List<LocalDate> doctorAvailableDates = this.availableDateService.localDatesByDoctorId(doctor.getId());
         if (!doctorAvailableDates.contains(saveAppointment.getAppointmentDate().toLocalDate())) {
-            throw new NotFoundException("Doktor Müsait Değildir");
+            throw new NotFoundException("Doktor bugün çalışmamaktadır.");
         }
 
         this.appointmentRepo.save(saveAppointment);
@@ -103,7 +103,7 @@ public class AppointmentManager implements IAppointmentService {
 
         List<LocalDate> doctorAvailableDates = this.availableDateService.localDatesByDoctorId(doctor.getId());
         if (!doctorAvailableDates.contains(updateAppointment.getAppointmentDate().toLocalDate())) {
-            throw new NotFoundException("Doktor Müsait Değildir");
+            throw new NotFoundException("Doktor bugün çalışmamaktadır.");
         }
 
         this.appointmentRepo.save(updateAppointment);

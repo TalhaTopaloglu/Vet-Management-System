@@ -7,7 +7,6 @@ import com.vet.Vet.dto.response.animal.AnimalResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 

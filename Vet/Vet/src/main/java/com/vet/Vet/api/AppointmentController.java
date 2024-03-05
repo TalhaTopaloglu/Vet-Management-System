@@ -37,7 +37,7 @@ public class AppointmentController {
 
 
 
-
+    //Değerlendirme Formu 17
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResultData<AppointmentResponse> save(@Valid @RequestBody AppointmentSaveRequest appointmentSaveRequest){
@@ -49,7 +49,7 @@ public class AppointmentController {
     public ResultData<AppointmentResponse> get (@PathVariable("id") int id){
         return ResultHelper.success(this.appointmentService.get(id));
     }
-
+    //Değerlendirme Formu 20
     @GetMapping("/doctor/{doctorId}/start-date/{startDateTime}/end-date/{finishDateTime}")
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<AppointmentResponse>> getDoctorAppointments(
@@ -59,14 +59,14 @@ public class AppointmentController {
     ) {
         Doctor doctor = this.doctorService.getOne(doctorId);
         if(startDateTime.isAfter(finishDateTime)){
-            throw new NotFoundException("başlangıç tarihi bitiş tarihinden sonra olmalı");
+            throw new NotFoundException("Başlangıç tarihi bitiş tarihinden sonra olmalı");
         }
         if(!this.appointmentService.getDoctorsAppointment(startDateTime,finishDateTime,doctor).isEmpty()){
             return ResultHelper.success(this.appointmentService.getDoctorsAppointment(startDateTime,finishDateTime,doctor));
         }
         throw new NotFoundException(startDateTime.toString() + " ile " + finishDateTime.toString() + " tarihleri arasında " + doctor.getName() + " isimli doktorun randevusu bulunmamaktadır!");
     }
-
+    //Değerlendirme Formu 19
     @GetMapping("/animal/{animalId}/start-date/{startDateTime}/end-date/{finishDateTime}")
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<AppointmentResponse>> getAnimalAppointments(

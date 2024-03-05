@@ -28,9 +28,11 @@ public class Doctor {
     private String address;
     @Column(name = "doctor_city")
     private String city;
+    //Değerlendirme Formu 9
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Appointment> appointmentList;
+    //Değerlendirme Formu 9
     @OneToMany(mappedBy = "doctor",cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     @JsonIgnore
     private List<AvailableDate> availableDateList;

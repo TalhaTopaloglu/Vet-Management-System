@@ -12,7 +12,6 @@ import com.vet.Vet.dto.request.availableDate.AvailableDateUpdateRequest;
 import com.vet.Vet.dto.response.availableDate.AvailableDateResponse;
 import com.vet.Vet.entities.AvailableDate;
 import com.vet.Vet.entities.Doctor;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,9 +26,7 @@ import java.util.Optional;
 public class AvailableDateManager implements IAvailableDateService {
 
     private final AvailableDateRepo availableDateRepo;
-
     private final IModelMapperService modelMapper;
-
     private final IDoctorService doctorService;
 
     public AvailableDateManager(AvailableDateRepo availableDateRepo, IModelMapperService modelMapper, IDoctorService doctorService) {
@@ -93,6 +90,7 @@ public class AvailableDateManager implements IAvailableDateService {
         return true;
     }
 
+    // Doctor entity'sinin id'sini kullanara doktorun müsait günlerini alıp.Bir listede tutuyoruz.
     @Override
     public List<LocalDate> localDatesByDoctorId(int id) {
         Doctor doctor = doctorService.getOne(id);

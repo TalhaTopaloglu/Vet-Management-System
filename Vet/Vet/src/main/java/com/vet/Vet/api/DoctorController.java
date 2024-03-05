@@ -21,7 +21,7 @@ public class DoctorController {
     public DoctorController(IDoctorService doctorService) {
         this.doctorService = doctorService;
     }
-
+    //Değerlendirme Formu 15
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ResultData<DoctorResponse> save(@Valid @RequestBody DoctorSaveRequest doctorSaveRequest) {

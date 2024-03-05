@@ -2,7 +2,6 @@ package com.vet.Vet.api;
 
 
 import com.vet.Vet.buisness.abstracts.ICustomerService;
-import com.vet.Vet.core.config.modelMapper.IModelMapperService;
 import com.vet.Vet.core.exception.NotFoundException;
 import com.vet.Vet.core.result.Result;
 import com.vet.Vet.core.result.ResultData;
@@ -11,10 +10,8 @@ import com.vet.Vet.dto.request.customer.CustomerSaveRequest;
 import com.vet.Vet.dto.request.customer.CustomerUpdateRequest;
 import com.vet.Vet.dto.response.CursorResponse;
 import com.vet.Vet.dto.response.customer.CustomerResponse;
-import com.vet.Vet.entities.Customer;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +27,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    //Değerlendirme Formu 10
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ResultData<CustomerResponse> save(@Valid @RequestBody CustomerSaveRequest customerSaveRequest) {
@@ -43,6 +41,7 @@ public class CustomerController {
         return ResultHelper.success(this.customerService.get(id));
     }
 
+    //Değerlendirme Formu 11
     @GetMapping("/name/{name}")
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<CustomerResponse>> getByName(@PathVariable("name") String name) {

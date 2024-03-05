@@ -5,6 +5,5 @@ public class Msg {
     public static final String VALIDATE_ERROR = "Veri Doğrulama Hatası";
     public static final String OK = "İşlem Başarılı";
     public static final String NOT_FOUND = "Veri Bulunamadı";
-    public static final String ALREADY_EXIST = "Bu doktora zaten bu tarih eklenmiştir, tekrar aynı tarih eklenemez!";
     public static final String CONFLICT = "Doktorun bu saatte başka bir randevusu vardır!";
 }

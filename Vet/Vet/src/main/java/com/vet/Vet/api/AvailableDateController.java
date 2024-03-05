@@ -1,19 +1,14 @@
 package com.vet.Vet.api;
 
 import com.vet.Vet.buisness.abstracts.IAvailableDateService;
-import com.vet.Vet.buisness.abstracts.IDoctorService;
-import com.vet.Vet.core.exception.NotFoundException;
 import com.vet.Vet.core.result.Result;
 import com.vet.Vet.core.result.ResultData;
 import com.vet.Vet.core.utilies.ResultHelper;
 import com.vet.Vet.dto.request.availableDate.AvailableDateSaveRequest;
 import com.vet.Vet.dto.request.availableDate.AvailableDateUpdateRequest;
-import com.vet.Vet.dto.request.vaccine.VaccineSaveRequest;
 import com.vet.Vet.dto.response.CursorResponse;
 import com.vet.Vet.dto.response.availableDate.AvailableDateResponse;
-import com.vet.Vet.entities.Doctor;
 import jakarta.validation.Valid;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +24,7 @@ public class AvailableDateController {
         this.availableDateService = availableDateService;
     }
 
+    //Değerlendirme Formu 16
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ResultData<AvailableDateResponse> save(@Valid @RequestBody AvailableDateSaveRequest availableDateSaveRequest) {

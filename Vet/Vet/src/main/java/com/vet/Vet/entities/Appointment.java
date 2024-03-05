@@ -21,11 +21,11 @@ public class Appointment {
 
     @Column(name = "appointment_date")
     private LocalDateTime appointmentDate;
-
+    //Değerlendirme Formu 9
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "appointment_animal_id", referencedColumnName = "animal_id")
     private Animal animal;
-
+    //Değerlendirme Formu 9
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "appointment_doctor_id", referencedColumnName = "doctor_id")
     private Doctor doctor;

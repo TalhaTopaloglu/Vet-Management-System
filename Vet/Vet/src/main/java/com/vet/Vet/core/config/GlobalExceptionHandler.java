@@ -20,6 +20,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Result> handleNotFoundException(NotFoundException e){
         return new ResponseEntity<>(ResultHelper.notFoundError(e.getMessage()), HttpStatus.NOT_FOUND);
     }
+    //Değerlendirme Formu 25
     @ExceptionHandler(AlreadyExistException.class)
     public ResponseEntity<Result> handleAlreadyExistException(AlreadyExistException e){
         return new ResponseEntity<>(ResultHelper.alreadyExist(e.getMessage()), HttpStatus.ALREADY_REPORTED);

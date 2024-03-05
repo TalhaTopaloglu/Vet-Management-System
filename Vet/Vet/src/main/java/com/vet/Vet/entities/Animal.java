@@ -43,10 +43,11 @@ public class Animal {
     @JoinColumn(name = "animal_customer_id", referencedColumnName = "customer_id")
     private Customer customer;
 
+    //Değerlendirme Formu 9
     @OneToMany(mappedBy = "animal", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Vaccine> vaccineList;
-
+    //Değerlendirme Formu 9
     @OneToMany(mappedBy = "animal", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Appointment> appointmentList;
