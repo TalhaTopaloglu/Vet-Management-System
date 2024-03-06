@@ -28,7 +28,7 @@
 
 ## UML Diagram
 
-[title]
+![UML](https://github.com/TalhaTopaloglu/Vet-Management-System/blob/main/UML_Vet.JPG)
 
 # Endpoits
 
