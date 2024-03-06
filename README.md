@@ -1,5 +1,38 @@
-## Animals
+# Vet Management System
 
+#### A program developed for vet.
+- Records veterinary doctors.
+- Records working days (available days) of doctors.
+- Records customers.
+- Records the animals belonging to the customers.
+- Records the vaccines administered to the animals with their dates.
+- Creates appointments with veterinarians for animals.
+
+#### Technologies used :
+- PostgreSQL
+- Spring Boot,
+- Spring Web,
+- Spring Boot Dev Tools,
+- Spring Data Jpa,
+- Lombok,
+- ModelMapper,
+- Validation
+
+## Entities
+- Animal
+- Appointment,
+- Available Date,
+- Customer,
+- Doctor,
+- Vaccine,
+
+## UML Diagram
+
+[title]
+
+# Endpoits
+
+## Animal
 | Http | Endpoint | Description |
 |--|--|--|
 | GET | /v1/animals | Lists all animals |
@@ -11,7 +44,6 @@
 | DELETE | /v1/animals/{id} | Deletes animals according to id.|
 
 ## Appointment
-
 | Http | Endpoint | Description |
 |--|--|--|
 | GET | /v1/appointments | Lists all appointments |
@@ -23,7 +55,6 @@
 | DELETE | /v1/appointments/{id} | Deletes appointents according to id |
 
 ## Availablale Date
-
 | Http | Endpoint | Description |
 |--|--|--|
 | GET | /v1/available-dates | Lists all available dates |
@@ -33,7 +64,6 @@
 | DELETE | /v1/available-dates/{id} | Deletes available date according to id |
 
 ## Customer
-
 | Http | Endpoint | Description |
 |--|--|--|
 | GET | /v1/customers | Lists all customers |
@@ -44,7 +74,6 @@
 | DELETE | /v1/customers/{id} | Deletes customers according to id.|
 
 ## Doctor
-
 | Http | Endpoint | Description |
 |--|--|--|
 | GET | /v1/doctors | Lists all doctors |
@@ -55,7 +84,6 @@
 
 
 ## Vaccine
-
 | Http | Endpoint | Description |
 |--|--|--|
 | GET | /v1/vaccines | Lists all vaccines |
