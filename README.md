@@ -1,11 +1,11 @@
 # Vet Management System
 
 #### A program developed for vet.
-- Records veterinary doctors.
-- Records working days (available days) of doctors.
-- Records customers.
-- Records the animals belonging to the customers.
-- Records the vaccines administered to the animals with their dates.
+- Saves veterinary doctors.
+- Saves working days (available days) of doctors.
+- Saves customers.
+- Saves the animals belonging to the customers.
+- Saves the vaccines administered to the animals with their dates.
 - Creates appointments with veterinarians for animals.
 
 #### Technologies used :
