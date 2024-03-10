@@ -89,7 +89,7 @@
 | GET | /v1/vaccines | Lists all vaccines |
 | GET | /v1/vaccines/{id} | Lists vaccines by id |
 | GET | /v1/vaccines/animal/{id} | Lists vaccines by animal id |
-| GET | /v1/vaccines/protection-date/start-date/{protectionStartDate}/end-date/{protectionFinishDate}} | Lists vaccines by protection date |
+| GET | /v1/vaccines/protection-date/protection-date/start-date/{startDate}/end-date/{endDate} | Lists vaccines by protection date |
 | POST | /v1/vaccines  | Adds a new vaccine. |
 | PUT | /v1/vaccines  | Updates vaccines. |
 | DELETE | /v1/vaccines/{id} | Deletes vaccines according to id |
