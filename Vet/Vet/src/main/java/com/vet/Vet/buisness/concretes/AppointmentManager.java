@@ -5,6 +5,7 @@ import com.vet.Vet.core.config.modelMapper.IModelMapperService;
 import com.vet.Vet.core.exception.AlreadyExistException;
 import com.vet.Vet.core.exception.NotFoundException;
 import com.vet.Vet.core.utilies.Msg;
+import com.vet.Vet.core.utilies.ResultHelper;
 import com.vet.Vet.dao.AppointmentRepo;
 import com.vet.Vet.dto.request.appointment.AppointmentSaveRequest;
 import com.vet.Vet.dto.request.appointment.AppointmentUpdateRequest;
@@ -111,19 +112,46 @@ public class AppointmentManager implements IAppointmentService {
     }
 
     @Override
-    public List<AppointmentResponse> getDoctorsAppointment(LocalDateTime startDate, LocalDateTime finishDate, Doctor doctor) {
-        return appointmentRepo.findAppointmentsByDateAndDoctor(startDate,finishDate,doctor)
-                .stream()
-                .map(appointment -> modelMapper.forResponse().map(appointment, AppointmentResponse.class)
-                ).collect(Collectors.toList());
-    }
+    public List<AppointmentResponse> getDoctorsAppointment(LocalDate startDate, LocalDate finishDate, Doctor doctor) {
 
-    @Override
-    public List<AppointmentResponse> getAnimalAppointments(LocalDateTime startDate, LocalDateTime finishDate, Animal animal) {
-        return appointmentRepo.findAppointmentsByDateAndAnimal(startDate,finishDate,animal)
+        LocalDateTime startDateTime = startDate.atTime(0,0,0);
+        LocalDateTime finishDateTime = finishDate.atTime(0,0,0);
+
+        List<AppointmentResponse> appointmentList = appointmentRepo.findAppointmentsByDateAndDoctor(startDateTime,finishDateTime,doctor)
                 .stream()
                 .map(appointment -> modelMapper.forResponse().map(appointment,AppointmentResponse.class)
                 ).collect(Collectors.toList());
+
+        if(startDate.isAfter(finishDate)){
+            throw new NotFoundException("Başlangıç tarihi bitiş tarihinden sonra olmalı");
+        }
+
+        if(!appointmentList.isEmpty()){
+            return appointmentList;
+        }
+        throw new NotFoundException(startDate.toString() + " ile " + finishDate.toString() + " tarihleri arasında " + doctor.getName() + " isimli doktorun randevusu bulunmamaktadır!");
+
+    }
+
+    @Override
+    public List<AppointmentResponse> getAnimalAppointments(LocalDate startDate, LocalDate finishDate, Animal animal) {
+        LocalDateTime startDateTime = startDate.atTime(0,0,0);
+        LocalDateTime finishDateTime = finishDate.atTime(0,0,0);
+
+        List<AppointmentResponse> appointmentList = appointmentRepo.findAppointmentsByDateAndAnimal(startDateTime,finishDateTime,animal)
+                .stream()
+                .map(appointment -> modelMapper.forResponse().map(appointment,AppointmentResponse.class)
+                ).collect(Collectors.toList());
+
+        if(startDate.isAfter(finishDate)){
+            throw new NotFoundException("Başlangıç tarihi bitiş tarihinden sonra olmalı");
+        }
+
+        if(!appointmentList.isEmpty()){
+            return appointmentList;
+        }
+        throw new NotFoundException(startDate.toString() + " ile " + finishDate.toString() + " tarihleri arasında " + animal.getName() + " isimli hayvanın randevusu bulunmamaktadır!");
+
     }
 
 

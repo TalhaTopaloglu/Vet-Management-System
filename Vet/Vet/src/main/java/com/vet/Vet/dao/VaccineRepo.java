@@ -13,8 +13,8 @@ import java.util.Optional;
 public interface VaccineRepo extends JpaRepository<Vaccine, Integer> {
     List<Vaccine> findByNameAndCodeAndAnimalId(String name, String code, int animalId);
     Optional<Vaccine> findByNameAndCodeAndAnimalIdAndProtectionStartDateAndProtectionFinishDate(String name, String code, int animalId, LocalDate protectionStartDate,LocalDate protectionFinishDate);
-    @Query("SELECT v FROM Vaccine v WHERE v.protectionStartDate >= ?1 AND v.protectionFinishDate <= ?2")
-    List<Vaccine> findByProtectionDate(LocalDate protectionStartDate, LocalDate protectionFinishDate);
+    @Query("SELECT v FROM Vaccine v WHERE v.protectionFinishDate >= ?1 AND v.protectionFinishDate <= ?2")
+    List<Vaccine> findByProtectionFinishDate(LocalDate startDate,LocalDate endDate);
     @Query("SELECT v FROM Vaccine v WHERE v.animal.id = ?1")
     List<Vaccine> findVaccineByAnimalId(int id);
 

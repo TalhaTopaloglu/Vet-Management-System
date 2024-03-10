@@ -2,6 +2,7 @@ package com.vet.Vet.buisness.concretes;
 
 import com.vet.Vet.buisness.abstracts.IDoctorService;
 import com.vet.Vet.core.config.modelMapper.IModelMapperService;
+import com.vet.Vet.core.exception.AlreadyExistException;
 import com.vet.Vet.core.exception.NotFoundException;
 import com.vet.Vet.core.utilies.Msg;
 import com.vet.Vet.dao.DoctorRepo;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 public class DoctorManager implements IDoctorService {
@@ -36,6 +38,16 @@ public class DoctorManager implements IDoctorService {
 
     @Override
     public DoctorResponse save(DoctorSaveRequest doctorSaveRequest) {
+
+        Optional<Doctor> checkDoctor = this.doctorRepo.findByNameAndMail(
+                doctorSaveRequest.getName(),
+                doctorSaveRequest.getMail()
+        );
+
+        if (checkDoctor.isPresent()){
+            throw new AlreadyExistException("Veri zaten mevcut");
+        }
+
         Doctor saveDoctor = this.modelMapper.forRequest().map(doctorSaveRequest, Doctor.class);
         this.doctorRepo.save(saveDoctor);
         return this.modelMapper.forResponse().map(saveDoctor,DoctorResponse.class);

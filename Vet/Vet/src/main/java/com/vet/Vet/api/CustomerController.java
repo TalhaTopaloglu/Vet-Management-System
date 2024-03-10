@@ -32,7 +32,6 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResultData<CustomerResponse> save(@Valid @RequestBody CustomerSaveRequest customerSaveRequest) {
         return ResultHelper.created(this.customerService.save(customerSaveRequest));
-
     }
 
     @GetMapping("/{id}")
@@ -45,10 +44,7 @@ public class CustomerController {
     @GetMapping("/name/{name}")
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<CustomerResponse>> getByName(@PathVariable("name") String name) {
-        if(!this.customerService.getByName(name).isEmpty()){
-            return ResultHelper.success(this.customerService.getByName(name));
-        }
-        throw new NotFoundException(name + " isimli müşteri kaydı yok!");
+        return ResultHelper.success(this.customerService.getByName(name));
     }
 
     @GetMapping()

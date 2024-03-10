@@ -9,6 +9,7 @@ import com.vet.Vet.entities.Doctor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,8 +20,8 @@ public interface IAppointmentService {
     AppointmentResponse get(int id);
     Page<AppointmentResponse> cursor(int page, int pageSize);
     AppointmentResponse update(AppointmentUpdateRequest appointmentUpdateRequest);
-    List<AppointmentResponse> getDoctorsAppointment(LocalDateTime startDate, LocalDateTime finishDate, Doctor doctor);
-    List<AppointmentResponse> getAnimalAppointments(LocalDateTime startDate, LocalDateTime finishDate, Animal animal);
+    List<AppointmentResponse> getDoctorsAppointment(LocalDate startDate, LocalDate finishDate, Doctor doctor);
+    List<AppointmentResponse> getAnimalAppointments(LocalDate startDate, LocalDate finishDate, Animal animal);
 
     boolean delete(int id);
 }

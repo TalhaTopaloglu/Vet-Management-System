@@ -27,7 +27,7 @@ public class ResultHelper {
     }
 
     public static Result alreadyExist(String msg){
-        return new Result(false, msg,"404");
+        return new Result(false, msg,"208");
     }
 
     public static <T> ResultData<CursorResponse<T>> cursor(Page<T> pageData){

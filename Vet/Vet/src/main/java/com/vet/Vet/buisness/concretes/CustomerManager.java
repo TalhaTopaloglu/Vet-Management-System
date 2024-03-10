@@ -2,8 +2,10 @@ package com.vet.Vet.buisness.concretes;
 
 import com.vet.Vet.buisness.abstracts.ICustomerService;
 import com.vet.Vet.core.config.modelMapper.IModelMapperService;
+import com.vet.Vet.core.exception.AlreadyExistException;
 import com.vet.Vet.core.exception.NotFoundException;
 import com.vet.Vet.core.utilies.Msg;
+import com.vet.Vet.core.utilies.ResultHelper;
 import com.vet.Vet.dao.CustomerRepo;
 import com.vet.Vet.dto.request.customer.CustomerSaveRequest;
 import com.vet.Vet.dto.request.customer.CustomerUpdateRequest;
@@ -17,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,23 +40,38 @@ public class CustomerManager implements ICustomerService {
 
     @Override
     public List<CustomerResponse> getByName(String name) {
-        return customerRepo.findByName(name)
+
+        List<CustomerResponse> customerList =  customerRepo.findByName(name)
                 .stream()
                 .map(customer -> modelMapper.forResponse().map(customer, CustomerResponse.class)
                 ).collect(Collectors.toList());
+
+        if (customerList.isEmpty()) {
+            throw new NotFoundException(name + " isimli müşteri kaydı yok!");
+        }
+        return customerList;
     }
 
     @Override
     public CustomerResponse save(CustomerSaveRequest customerSaveRequest) {
+        Optional<Customer> checkCustomer = customerRepo.findByNameAndMail(
+                customerSaveRequest.getName(),
+                customerSaveRequest.getMail()
+        );
+
+        if(checkCustomer.isPresent()){
+            throw new AlreadyExistException("Veri zaten mevcut");
+        }
+
         Customer saveCustomer = this.modelMapper.forRequest().map(customerSaveRequest, Customer.class);
         this.customerRepo.save(saveCustomer);
-        return this.modelMapper.forResponse().map(saveCustomer,CustomerResponse.class);
+        return this.modelMapper.forResponse().map(saveCustomer, CustomerResponse.class);
     }
 
     @Override
     public CustomerResponse get(int id) {
         Customer customer = this.customerRepo.findById(id).orElseThrow(() -> new NotFoundException(Msg.NOT_FOUND));
-        return this.modelMapper.forResponse().map(customer,CustomerResponse.class);
+        return this.modelMapper.forResponse().map(customer, CustomerResponse.class);
     }
 
     @Override
@@ -67,7 +85,7 @@ public class CustomerManager implements ICustomerService {
     public CustomerResponse update(CustomerUpdateRequest customerUpdateRequest) {
         Customer updateCustomer = this.modelMapper.forRequest().map(customerUpdateRequest, Customer.class);
         this.customerRepo.save(updateCustomer);
-        return this.modelMapper.forResponse().map(updateCustomer,CustomerResponse.class);
+        return this.modelMapper.forResponse().map(updateCustomer, CustomerResponse.class);
     }
 
     @Override

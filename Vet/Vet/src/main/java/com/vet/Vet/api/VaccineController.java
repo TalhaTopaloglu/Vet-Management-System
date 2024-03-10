@@ -25,6 +25,7 @@ public class VaccineController {
     public VaccineController(IVaccineService vaccineService) {
         this.vaccineService = vaccineService;
     }
+
     //Değerlendirme Formu 21
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
@@ -42,26 +43,16 @@ public class VaccineController {
     @GetMapping("/animal/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<VaccineResponse>> getByAnimalId(@PathVariable("id") int id) {
-        if (!this.vaccineService.getByAnimalId(id).isEmpty()) {
-            return ResultHelper.success(this.vaccineService.getByAnimalId(id));
-        }
-        throw new NotFoundException(id + " ID'li hayvanın aşı bilgisi bulunmamaktadır!");
+        return ResultHelper.success(this.vaccineService.getByAnimalId(id));
     }
 
     @GetMapping("/protection-date/start-date/{protectionStartDate}/end-date/{protectionFinishDate}")
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<VaccineResponse>> getByVaccineProtectionDate(
-            @PathVariable("protectionStartDate")LocalDate startDate,
+            @PathVariable("protectionStartDate") LocalDate startDate, //silinecek
             @PathVariable("protectionFinishDate") LocalDate finishDate
     ) {
-        if(startDate.isAfter(finishDate)){
-            throw new NotFoundException("Başlangıç tarihi bitiş tarihinden önce olamaz");
-        }
-
-        if(!this.vaccineService.getByProtectionFinishDate(startDate,finishDate).isEmpty()){
-            return ResultHelper.success(this.vaccineService.getByProtectionFinishDate(startDate,finishDate));
-        }
-        throw new NotFoundException(startDate.toString() + " ile " + finishDate.toString()   + " tarihleri arasında koruyuculuk bitiş tarihi olan aşı bulunmamaktadır!");
+        return ResultHelper.success(this.vaccineService.getByProtectionFinishDate(startDate, finishDate));
     }
 
 

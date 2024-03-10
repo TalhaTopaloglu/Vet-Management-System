@@ -6,6 +6,7 @@ import com.vet.Vet.core.config.modelMapper.IModelMapperService;
 import com.vet.Vet.core.exception.AlreadyExistException;
 import com.vet.Vet.core.exception.NotFoundException;
 import com.vet.Vet.core.utilies.Msg;
+import com.vet.Vet.core.utilies.ResultHelper;
 import com.vet.Vet.dao.VaccineRepo;
 import com.vet.Vet.dto.request.vaccine.VaccineSaveRequest;
 import com.vet.Vet.dto.request.vaccine.VaccineUpdateRequest;
@@ -41,18 +42,32 @@ public class VaccineManager implements IVaccineService {
     //Değerlendirme Formu 24
     @Override
     public List<VaccineResponse> getByAnimalId(int id) {
-        return vaccineRepo.findVaccineByAnimalId(id)
+        List<VaccineResponse> vaccineResponseList = vaccineRepo.findVaccineByAnimalId(id)
                 .stream()
                 .map(vaccine -> modelMapper.forResponse().map(vaccine, VaccineResponse.class)
                 ).collect(Collectors.toList());
+
+        if (!vaccineResponseList.isEmpty()) {
+            return vaccineResponseList;
+        }
+        throw new NotFoundException(id + " ID'li hayvanın aşı bilgisi bulunmamaktadır!");
     }
     //Değerlendirme Formu 23
     @Override
-    public List<VaccineResponse> getByProtectionFinishDate(LocalDate protectionStartDate, LocalDate protectionFinishDate) {
-        return vaccineRepo.findByProtectionDate(protectionStartDate,protectionFinishDate)
+    public List<VaccineResponse> getByProtectionFinishDate(LocalDate startDate, LocalDate endDate) {
+        List<VaccineResponse> vaccineResponseList =  vaccineRepo.findByProtectionFinishDate(startDate,endDate)
                 .stream()
                 .map(vaccine -> modelMapper.forResponse().map(vaccine, VaccineResponse.class)
                 ).collect(Collectors.toList());
+
+        if (startDate.isAfter(endDate)) {
+            throw new NotFoundException("Başlangıç tarihi bitiş tarihinden önce olamaz");
+        }
+
+        if (!vaccineResponseList.isEmpty()) {
+            return vaccineResponseList;
+        }
+        throw new NotFoundException(startDate.toString() + " ile " + endDate.toString() + " tarihleri arasında koruyuculuk bitiş tarihi olan aşı bulunmamaktadır!");
     }
 
     //Değerlendirme Formu 22

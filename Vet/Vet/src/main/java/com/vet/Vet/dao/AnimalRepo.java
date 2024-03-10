@@ -7,11 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AnimalRepo extends JpaRepository<Animal, Integer> {
-    List<Animal> findByName(String name);
-    @Query("SELECT a FROM Animal a WHERE a.customer.name = ?1")
+    @Query("SELECT a FROM Animal a WHERE a.name ILIKE ?1")
+    List<Animal> findByNamesLetter(String name);
+    @Query("SELECT a FROM Animal a WHERE a.customer.name ILIKE ?1")
     List<Animal> findAnimalsByCustomerName(String name);
-
+    Optional<Animal> findByNameAndSpeciesAndCustomerId(String name, String species, int customerId);
 }

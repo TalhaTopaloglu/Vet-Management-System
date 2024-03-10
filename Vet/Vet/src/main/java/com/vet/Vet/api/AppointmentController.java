@@ -17,6 +17,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -54,34 +55,23 @@ public class AppointmentController {
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<AppointmentResponse>> getDoctorAppointments(
             @PathVariable("doctorId") int doctorId,
-            @PathVariable("startDateTime") LocalDateTime startDateTime,
-            @PathVariable("finishDateTime") LocalDateTime finishDateTime
+            @PathVariable("startDateTime") LocalDate startDateTime,
+            @PathVariable("finishDateTime") LocalDate finishDateTime
     ) {
         Doctor doctor = this.doctorService.getOne(doctorId);
-        if(startDateTime.isAfter(finishDateTime)){
-            throw new NotFoundException("Başlangıç tarihi bitiş tarihinden sonra olmalı");
-        }
-        if(!this.appointmentService.getDoctorsAppointment(startDateTime,finishDateTime,doctor).isEmpty()){
-            return ResultHelper.success(this.appointmentService.getDoctorsAppointment(startDateTime,finishDateTime,doctor));
-        }
-        throw new NotFoundException(startDateTime.toString() + " ile " + finishDateTime.toString() + " tarihleri arasında " + doctor.getName() + " isimli doktorun randevusu bulunmamaktadır!");
+        return ResultHelper.success(this.appointmentService.getDoctorsAppointment(startDateTime,finishDateTime,doctor));
     }
+
     //Değerlendirme Formu 19
     @GetMapping("/animal/{animalId}/start-date/{startDateTime}/end-date/{finishDateTime}")
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<AppointmentResponse>> getAnimalAppointments(
             @PathVariable("animalId") int animalId,
-            @PathVariable("startDateTime") LocalDateTime startDateTime,
-            @PathVariable("finishDateTime") LocalDateTime finishDateTime
+            @PathVariable("startDateTime") LocalDate startDateTime,
+            @PathVariable("finishDateTime") LocalDate finishDateTime
     ) {
         Animal animal = this.animalService.getOne(animalId);
-        if(startDateTime.isAfter(finishDateTime)){
-            throw new NotFoundException("başlangıç tarihi bitiş tarihinden sonra olmalı");
-        }
-        if(!this.appointmentService.getAnimalAppointments(startDateTime,finishDateTime,animal).isEmpty()){
-            return ResultHelper.success(this.appointmentService.getAnimalAppointments(startDateTime,finishDateTime,animal));
-        }
-        throw new NotFoundException(startDateTime.toString() + " ile " + finishDateTime.toString() + " tarihleri arasında " + animal.getName() + " isimli hayvanın randevusu bulunmamaktadır!");
+        return ResultHelper.success(this.appointmentService.getAnimalAppointments(startDateTime,finishDateTime,animal));
     }
 
     @GetMapping

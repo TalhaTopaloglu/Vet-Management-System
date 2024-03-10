@@ -15,7 +15,7 @@ import java.util.List;
 public interface IVaccineService {
     Vaccine getOne(int id);
     List<VaccineResponse> getByAnimalId(int id);
-    List<VaccineResponse> getByProtectionFinishDate(LocalDate protectionStartDate,LocalDate protectionFinishDate);
+    List<VaccineResponse> getByProtectionFinishDate(LocalDate startDate,LocalDate endDate);
     VaccineResponse save(VaccineSaveRequest vaccineSaveRequest);
     VaccineResponse get(int id);
     Page<VaccineResponse> cursor(int page, int pageSize);

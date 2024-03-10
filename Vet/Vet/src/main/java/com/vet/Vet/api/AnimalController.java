@@ -41,19 +41,13 @@ public class AnimalController {
     @GetMapping("/name/{name}")
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<AnimalResponse>> getByName(@PathVariable("name") String name) {
-        if (!this.animalService.getByName(name).isEmpty()) {
-            return ResultHelper.success(this.animalService.getByName(name));
-        }
-        throw new NotFoundException(name + " isimli hayvan bulunmamaktadır");
+        return ResultHelper.success(this.animalService.getByName(name));
     }
     //Değerlendirme Formu 14
     @GetMapping("/customer/{customerName}")
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<AnimalResponse>> getByCustomerName(@PathVariable("customerName") String name) {
-        if (!this.animalService.getByCustomerName(name).isEmpty()) {
-            return ResultHelper.success(this.animalService.getByCustomerName(name));
-        }
-        throw new NotFoundException(name + " isimli müşteri bulunmamaktadır");
+        return ResultHelper.success(this.animalService.getByCustomerName(name));
     }
 
     @GetMapping()
