@@ -46,13 +46,13 @@ public class VaccineController {
         return ResultHelper.success(this.vaccineService.getByAnimalId(id));
     }
 
-    @GetMapping("/protection-date/start-date/{protectionStartDate}/end-date/{protectionFinishDate}")
+    @GetMapping("/protection-date/start-date/{startDate}/end-date/{endDate}")
     @ResponseStatus(HttpStatus.OK)
-    public ResultData<List<VaccineResponse>> getByVaccineProtectionDate(
-            @PathVariable("protectionStartDate") LocalDate startDate, //silinecek
-            @PathVariable("protectionFinishDate") LocalDate finishDate
+    public ResultData<List<VaccineResponse>> getByVaccineProtectionFinishDate(
+            @PathVariable("startDate") LocalDate startDate,
+            @PathVariable("endDate") LocalDate endDate
     ) {
-        return ResultHelper.success(this.vaccineService.getByProtectionFinishDate(startDate, finishDate));
+        return ResultHelper.success(this.vaccineService.getByProtectionFinishDate(startDate, endDate));
     }
 
 
