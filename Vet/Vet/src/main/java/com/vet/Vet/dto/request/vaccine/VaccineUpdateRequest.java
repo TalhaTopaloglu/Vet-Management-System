@@ -19,4 +19,5 @@ public class VaccineUpdateRequest {
     private String code;
     @NotNull
     private int animalId;
+    private int reportId;
 }

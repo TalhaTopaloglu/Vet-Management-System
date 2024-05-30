@@ -22,4 +22,5 @@ public class VaccineSaveRequest {
     @NotNull(message = "Koruma bitiş tarihi boş bırakılamaz.")
     private LocalDate protectionFinishDate;
     private int animalId;
+    private int reportId;
 }

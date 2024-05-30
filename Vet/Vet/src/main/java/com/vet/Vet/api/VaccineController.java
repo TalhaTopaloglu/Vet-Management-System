@@ -30,7 +30,6 @@ public class VaccineController {
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ResultData<VaccineResponse> save(@Valid @RequestBody VaccineSaveRequest vaccineSaveRequest) {
-
         return ResultHelper.created(this.vaccineService.save(vaccineSaveRequest));
     }
 

@@ -73,7 +73,6 @@ public class DoctorManager implements IDoctorService {
         updateDoctor.setAvailableDateList(doctor.getAvailableDateList());
         updateDoctor.setAppointmentList(doctor.getAppointmentList());
         this.doctorRepo.save(updateDoctor);
-
         return this.modelMapper.forResponse().map(updateDoctor,DoctorResponse.class);
     }
 

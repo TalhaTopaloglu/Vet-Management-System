@@ -1,6 +1,7 @@
 package com.vet.Vet.dto.response.vaccine;
 
 import com.vet.Vet.entities.Animal;
+import com.vet.Vet.entities.Report;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -19,4 +20,5 @@ public class VaccineResponse {
     private LocalDate protectionStartDate;
     private LocalDate protectionFinishDate;
     private Animal animal;
+    private Report report;
 }

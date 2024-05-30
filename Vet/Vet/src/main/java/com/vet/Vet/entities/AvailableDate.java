@@ -18,7 +18,8 @@ public class AvailableDate {
     private int id;
     @Column(name = "available_date")
     private LocalDate availableDate;
-    //Değerlendirme Formu 9
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "available_date_doctor_id", referencedColumnName = "doctor_id")
     private Doctor doctor;
