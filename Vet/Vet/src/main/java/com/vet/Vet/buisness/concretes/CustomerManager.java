@@ -41,7 +41,7 @@ public class CustomerManager implements ICustomerService {
     @Override
     public List<CustomerResponse> getByName(String name) {
 
-        List<CustomerResponse> customerList =  customerRepo.findByName(name)
+        List<CustomerResponse> customerList =  customerRepo.findByNameContainingIgnoreCase(name)
                 .stream()
                 .map(customer -> modelMapper.forResponse().map(customer, CustomerResponse.class)
                 ).collect(Collectors.toList());
