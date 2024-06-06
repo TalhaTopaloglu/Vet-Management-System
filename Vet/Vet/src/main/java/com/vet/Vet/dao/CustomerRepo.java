@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface CustomerRepo extends JpaRepository<Customer, Integer> {
+
 //    @Query("SELECT c FROM Customer c WHERE c.name ILIKE ?1")
 //    List<Customer> findByName(String name);
 

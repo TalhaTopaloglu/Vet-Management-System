@@ -15,6 +15,7 @@ public class CustomerSaveRequest {
     private String name;
     @NotNull(message = "Müşteri telefon numarası boş bırakılamaz.")
     private String phone;
+    @NotNull(message = "Müşteri maili boş bırakılamaz.")
     @Email(message = "Geçerli bir mail adresi giriniz.")
     private String mail;
     @NotNull(message = "Müşterinin adresi boş bırakılamaz.")

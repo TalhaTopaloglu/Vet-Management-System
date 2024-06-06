@@ -108,7 +108,9 @@ public class AnimalManager implements IAnimalService {
     public AnimalResponse update(AnimalUpdateRequest animalUpdateRequest) {
         Animal updateAnimal = this.modelMapper.forRequest().map(animalUpdateRequest, Animal.class);
         Customer customer = customerService.getOne(animalUpdateRequest.getCustomerId());
+        // updateAnimal.setCustomer(animalUpdateRequest.getCustomer());
         updateAnimal.setCustomer(customer);
+
         this.animalRepo.save(updateAnimal);
         return this.modelMapper.forResponse().map(updateAnimal, AnimalResponse.class);
     }

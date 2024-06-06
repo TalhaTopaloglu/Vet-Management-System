@@ -1,5 +1,6 @@
 package com.vet.Vet.dto.request.animal;
 
+import com.vet.Vet.entities.Customer;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ public class AnimalUpdateRequest {
     private String gender;
     private String colour;
     private LocalDate dateOfBirth;
-    @NotNull
     private int customerId;
+//    private Customer customer;
+
 }
