@@ -43,11 +43,11 @@ public class Animal {
     @JoinColumn(name = "animal_customer_id", referencedColumnName = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "animal", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "animal", fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Vaccine> vaccineList;
 
-    @OneToMany(mappedBy = "animal", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "animal", fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Appointment> appointmentList;
 

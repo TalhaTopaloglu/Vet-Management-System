@@ -25,7 +25,7 @@ public class Report {
     @Column(name = "report_price")
     private double price;
 
-    @OneToMany (mappedBy = "report", cascade = CascadeType.REMOVE)
+    @OneToMany (mappedBy = "report", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Vaccine> vaccineList;
 

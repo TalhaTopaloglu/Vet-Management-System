@@ -36,7 +36,7 @@ public class Customer {
     @Column(name = "customer_city")
     private String city;
     //Değerlendirme Formu 9
-    @OneToMany(mappedBy = "customer",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "customer",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Animal> animalList;
 
