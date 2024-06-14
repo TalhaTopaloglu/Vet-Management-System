@@ -2,6 +2,7 @@ package com.vet.Vet.dto.response.appointment;
 
 import com.vet.Vet.entities.Animal;
 import com.vet.Vet.entities.Doctor;
+import com.vet.Vet.entities.Report;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,4 +19,5 @@ public class AppointmentResponse {
     private LocalDateTime appointmentDate;
     private Animal animal;
     private Doctor doctor;
+    private Report report;
 }

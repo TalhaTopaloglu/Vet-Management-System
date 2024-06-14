@@ -19,7 +19,6 @@ public class AvailableDate {
     @Column(name = "available_date")
     private LocalDate availableDate;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "available_date_doctor_id", referencedColumnName = "doctor_id")
     private Doctor doctor;

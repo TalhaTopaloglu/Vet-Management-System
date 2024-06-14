@@ -72,7 +72,7 @@ public class AnimalManager implements IAnimalService {
     @Override
     public List<AnimalResponse> getByName(String name) {
 
-        List<AnimalResponse> animalResponseList = animalRepo.findByNamesLetter(name)
+        List<AnimalResponse> animalResponseList = animalRepo.findByNameContainingIgnoreCase(name)
                 .stream()
                 .map(animal -> modelMapper.forResponse().map(animal, AnimalResponse.class)
                 ).collect(Collectors.toList());

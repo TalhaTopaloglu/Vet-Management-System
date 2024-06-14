@@ -3,6 +3,7 @@ package com.vet.Vet.dto.request.vaccine;
 import com.vet.Vet.entities.Animal;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,14 +14,21 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VaccineSaveRequest {
-    @NotNull(message = "Aşı ismi boş bırakılamaz.")
+    @NotNull(message = "Vaccine name is required.")
     private String name;
-    @NotNull(message = "Aşı kodu boş bırakılamaz.")
+
+    @NotNull(message = "Vaccine code is required.")
     private String code;
-    @NotNull(message = "Koruma başlangıç tarihi boş bırakılamaz.")
+
+    @NotNull(message = "Protection start date is required.")
     private LocalDate protectionStartDate;
-    @NotNull(message = "Koruma bitiş tarihi boş bırakılamaz.")
+
+    @NotNull(message = "Protection finish date is required.")
     private LocalDate protectionFinishDate;
+
+    @Positive(message = "Animal is required.")
+    @NotNull(message = "Animal is required.")
     private int animalId;
+
     private int reportId;
 }

@@ -16,14 +16,18 @@ public class AnimalUpdateRequest {
     @Positive(message = "ID değeri pozitif bir değer olmalı.")
     @NotNull
     private int id;
-    @NotNull
+    @NotNull(message = "Name is required!")
     private String name;
+    @NotNull(message = "Species is required!")
     private String species;
+    @NotNull(message = "Breed is required!")
     private String breed;
+    @NotNull(message = "Gender is required!")
     private String gender;
+    @NotNull(message = "Colour is required!")
     private String colour;
+    @NotNull(message = "Date of Birth is required!")
     private LocalDate dateOfBirth;
     private int customerId;
-//    private Customer customer;
 
 }

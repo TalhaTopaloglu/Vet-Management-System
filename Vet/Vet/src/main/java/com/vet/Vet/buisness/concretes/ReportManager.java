@@ -73,7 +73,9 @@ public class ReportManager implements IReportService {
     @Override
     public ReportResponse update(ReportUpdateRequest reportUpdateRequest) {
         Report updateReport = this.modelMapper.forRequest().map(reportUpdateRequest, Report.class);
-        Appointment appointment = appointmentService.getOne(reportUpdateRequest.getAppointment_id());
+//        Appointment appointment = appointmentService.getOne(reportUpdateRequest.getAppointment_id());
+       Appointment appointment = reportUpdateRequest.getAppointment();
+
         updateReport.setAppointment(appointment);
         this.reportRepo.save(updateReport);
         return this.modelMapper.forResponse().map(updateReport, ReportResponse.class);

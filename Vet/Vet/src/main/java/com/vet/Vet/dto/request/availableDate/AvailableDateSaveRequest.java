@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class AvailableDateSaveRequest {
 
-    @NotNull
+    @NotNull(message = "Date is required!")
     private LocalDate availableDate;
     @NotNull
     private int doctorId;

@@ -25,12 +25,11 @@ public class Report {
     @Column(name = "report_price")
     private double price;
 
-    @OneToMany (mappedBy = "report", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<Vaccine> vaccineList;
-
     @OneToOne
     @JoinColumn (name = "appointment_id")
     private Appointment appointment;
 
+    @OneToMany (mappedBy = "report", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Vaccine> vaccineList;
 }

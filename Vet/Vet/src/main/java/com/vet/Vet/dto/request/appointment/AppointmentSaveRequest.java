@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AppointmentSaveRequest {
-    @NotNull
+    @NotNull(message = "Appointment Date is required")
     private LocalDateTime appointmentDate;
     @NotNull
     private int animalId;

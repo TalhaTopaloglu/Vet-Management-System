@@ -10,14 +10,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DoctorSaveRequest {
-    @NotNull
+    @NotNull(message = "Name is required!")
     private String name;
-
+    @NotNull(message = "Phone is required!")
     private String phone;
-    @Email
+    @Email(message = "eMail is required!")
+    @NotNull(message = "eMail is required!")
     private String mail;
-    @NotNull
+    @NotNull(message = "eMail is required!")
     private String address;
-    @NotNull
+    @NotNull(message = "eMail is required!")
     private String city;
 }

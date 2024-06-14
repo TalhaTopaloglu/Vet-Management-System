@@ -13,13 +13,14 @@ public class DoctorUpdateRequest {
     @Positive(message = "ID değeri pozitif bir değer olmalı.")
     @NotNull
     private int id;
-    @NotNull
+    @NotNull(message = "Name is required!")
     private String name;
+    @NotNull(message = "Phone is required!")
     private String phone;
-    @NotNull
+    @NotNull(message = "Mail is required!")
     private String mail;
-    @NotNull
+    @NotNull(message = "Adress is required!")
     private String address;
-    @NotNull
+    @NotNull(message = "City is required!")
     private String city;
 }

@@ -128,7 +128,8 @@ public class VaccineManager implements IVaccineService {
 
         Vaccine updateVaccine = this.modelMapper.forRequest().map(vaccineUpdateRequest, Vaccine.class);
         Vaccine vaccine = this.getOne(vaccineUpdateRequest.getId());
-        Animal animal = this.animalService.getOne(vaccineUpdateRequest.getAnimalId());
+//        Animal animal = this.animalService.getOne(vaccineUpdateRequest.getAnimalId());
+        Animal animal = vaccine.getAnimal();
         updateVaccine.setAnimal(animal);
         updateVaccine.setProtectionStartDate(vaccine.getProtectionStartDate());
         updateVaccine.setProtectionFinishDate(vaccine.getProtectionFinishDate());

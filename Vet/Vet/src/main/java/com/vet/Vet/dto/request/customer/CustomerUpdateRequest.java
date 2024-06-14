@@ -13,15 +13,16 @@ import lombok.NoArgsConstructor;
 public class CustomerUpdateRequest {
     @Positive(message = "ID değeri pozitif bir değer olmalı.")
     private int id;
-    @NotNull(message = "Müşteri ismi boş bırakılamaz.")
+    @NotNull(message = "Name is required.")
     private String name;
-    @NotNull(message = "Müşteri telefon numarası boş bırakılamaz.")
+    @NotNull(message = "Phone is required.")
     private String phone;
-    @Email(message = "Geçerli bir mail adresi giriniz.")
+    @Email(message = "Mail is required.")
+    @NotNull(message = "Mail is required.")
     private String mail;
-    @NotNull(message = "Müşterinin adresi boş bırakılamaz.")
+    @NotNull(message = "Address is required.")
     private String address;
-    @NotNull(message = "Müşterinin şehir boş bırakılamaz.")
+    @NotNull(message = "City is required.")
     private String city;
 
 }

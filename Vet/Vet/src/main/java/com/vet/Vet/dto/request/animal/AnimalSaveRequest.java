@@ -11,19 +11,18 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnimalSaveRequest {
-    @NotNull(message = "Name boş bırakılamaz")
+    @NotNull(message = "Name is required!")
     private String name;
-    @NotNull(message = "Species boş bırakılamaz")
+    @NotNull(message = "Species is required!")
     private String species;
-    @NotNull(message = "Breed boş bırakılamaz")
+    @NotNull(message = "Breed is required!")
     private String breed;
-    @NotNull(message = "Gender boş bırakılamaz")
+    @NotNull(message = "Gender is required!")
     private String gender;
-    @NotNull(message = "Colour boş bırakılamaz")
+    @NotNull(message = "Colour is required!")
     private String colour;
-    @NotNull(message = "Birth Day boş bırakılamaz")
+    @NotNull(message = "Date of Birth is required!")
     private LocalDate dateOfBirth;
-    @NotNull(message = "MÜşteri bilgisi boş bırakılamaz")
-    @NotNull
+    @NotNull(message = "Customer Name is required!")
     private int customerId;
 }

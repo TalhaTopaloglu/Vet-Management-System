@@ -1,5 +1,7 @@
 package com.vet.Vet.dto.request.vaccine;
 
+import com.vet.Vet.entities.Animal;
+import com.vet.Vet.entities.Report;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -13,11 +15,10 @@ import java.time.LocalDate;
 public class VaccineUpdateRequest {
     @Positive(message = "ID değeri pozitif bir değer olmalı.")
     private int id;
-    @NotNull(message = "Aşı ismi boş bırakılamaz.")
+    @NotNull(message = "Name is required.")
     private String name;
-    @NotNull(message = "Aşı kodu boş bırakılamaz.")
+    @NotNull(message = "Code is required.")
     private String code;
-    @NotNull
-    private int animalId;
-    private int reportId;
+    private Animal animal;
+    private Report report;
 }

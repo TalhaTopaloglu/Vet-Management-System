@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerSaveRequest {
-    @NotNull(message = "Müşteri ismi boş bırakılamaz.")
+    @NotNull(message = "Name is required!")
     private String name;
-    @NotNull(message = "Müşteri telefon numarası boş bırakılamaz.")
+    @NotNull(message = "Phone is required!")
     private String phone;
-    @NotNull(message = "Müşteri maili boş bırakılamaz.")
-    @Email(message = "Geçerli bir mail adresi giriniz.")
+    @NotNull(message = "Email is required!")
+    @Email(message = "Email is required!")
     private String mail;
-    @NotNull(message = "Müşterinin adresi boş bırakılamaz.")
+    @NotNull(message = "Address is required!")
     private String address;
-    @NotNull(message = "Müşterinin şehir boş bırakılamaz.")
+    @NotNull(message = "City is required!")
     private String city;
 }
